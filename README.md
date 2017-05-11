@@ -17,7 +17,7 @@ The purpose of this repository is to serve as a place where I can store the sour
 
 Links:
 1. Root to the hosted environment on Heroku (or AWS, or OpenShift)
-  https://chan-derek-webdev.herokuapp.com/
+https://chan-derek-webdev.herokuapp.com/
 2. Link to your project (you might need to come back to this)
 
 3. Link to your assignment (you might need to come back to this)
