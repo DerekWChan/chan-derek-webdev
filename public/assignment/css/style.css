@@ -1,9 +1,14 @@
+a:hover {
+  text-decoration: none;
+}
+
 input.form-control {
     margin-bottom: 5px;
 }
 
 .navbar-header {
   width: 100%;
+  padding: 0 15px;
 }
 
 .widget {
