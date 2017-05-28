@@ -75,13 +75,11 @@
 
       // retrieves the website in local websites array whose _id matches the websiteId parameter
       function findWebsiteById(websiteId) {
-        var results = [];
         for(i = 0; i < websites.length; i++) {
           if(websites[i]._id == websiteId) {
-            results.push(websites[i]);
+            return websites[i];
           }
         }
-        return results;
       }
 
       // updates the website in local websites array whose _id matches the websiteId parameter
