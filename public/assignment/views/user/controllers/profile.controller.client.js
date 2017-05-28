@@ -3,11 +3,16 @@
     .module("WebAppMaker")
     .controller("ProfileController", ProfileController)
 
-  function ProfileController() {
+  function ProfileController($routeParams, UserService) {
     var vm = this;
-    var vm.userId = $routeParams["userId"];
+    var userId = $routeParams["userId"];
+
     function init() {
-      vm.user = UserService.findUserById(vm.userId);
+      vm.user = UserService.findUserById(userId);
+      vm.updateUser = function() {
+        UserService.updateUser(userId, vm.user);
+        vm.message = "Profile was updated successfully."
+      }
     }
     init();
   }

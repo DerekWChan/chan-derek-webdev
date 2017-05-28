@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container" ng-controller="LoginController">
   <h1>Login</h1>
-  <input ng-model="model.user.username" type="text" class="form-control" placeholder="username" />
-  <input ng-model="model.user.password" type="password" class="form-control" placeholder="password" />
-  <a class="btn btn-primary btn-block" href="#/profile">Login</a>
+  <div ng-show="vm.message" class="alert alert-danger">{{vm.message}}</div>
+  <input ng-model="vm.user.username" type="text" class="form-control" placeholder="username" />
+  <input ng-model="vm.user.password" type="password" class="form-control" placeholder="password" />
+  <a ng-click="vm.login(username, password)" class="btn btn-primary btn-block" href="#/profile">Login</a>
   <a class="btn btn-success btn-block" href="#/register">Register</a>
 </div>

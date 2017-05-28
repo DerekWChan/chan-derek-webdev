@@ -2,21 +2,45 @@
 <html lang="en" ng-app="WebAppMaker">
 
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js"></script>
+  <script src="../vendors/angular/angular.min.js"></script>
+  <script src="../vendors/angular-route/angular-route.min.js"></script>
   <script src="app.js"></script>
   <script src="config.js"></script>
+
+  <!-- user -->
+  <script src="views/user/controllers/login.controller.client.js"></script>
+  <script src="views/user/controllers/profile.controller.client.js"></script>
+  <script src="views/user/controllers/register.controller.client.js"></script>
+  <script src="services/user.service.client.js"></script>
+
+  <!-- website -->
+  <script src="views/website/controllers/website-list.controller.client.js"></script>
+  <script src="views/website/controllers/website-new.controller.client.js"></script>
+  <script src="views/website/controllers/website-edit.controller.client.js"></script>
+  <script src="services/website.service.client.js"></script>
+
+  <!-- page -->
+  <script src="views/page/controllers/page-list.controller.client.js"></script>
+  <script src="views/page/controllers/page-new.controller.client.js"></script>
+  <script src="views/page/controllers/page-edit.controller.client.js"></script>
+  <script src="services/page.service.client.js"></script>
+
+  <!-- widget -->
+  <script src="views/widget/controllers/widget-list.controller.client.js"></script>
+  <script src="views/widget/controllers/widget-new.controller.client.js"></script>
+  <script src="views/widget/controllers/widget-edit.controller.client.js"></script>
+  <script src="services/widget.service.client.js"></script>
+
   <meta charset="UTF-8">
   <title>Assignment Home Page</title>
+
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div ngView></div>
+  <div ng-view></div>
 </body>
 
 </html>
