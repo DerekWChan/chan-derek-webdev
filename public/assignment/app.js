@@ -1,1 +1,4 @@
-var app = angular.module('WebAppMaker', []);
+(function () {
+    angular
+        .module('WebAppMaker', []);
+})();
