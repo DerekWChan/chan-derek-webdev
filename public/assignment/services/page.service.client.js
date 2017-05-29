@@ -34,6 +34,7 @@
 
       // adds the page parameter instance to the local pages array. The new page's websiteId is set to the websiteId parameter
       function createPage(websiteId, page) {
+        page._id = (new Date()).getTime() + "";
         page.websiteId = websiteId;
         pages.push(page);
       }

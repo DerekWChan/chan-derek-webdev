@@ -79,7 +79,7 @@
       }
 
       // retrieves the widget in local widgets array whose _id matches the widgetId parameter
-      function findWidgetById(widgetId) {
+      function findWidgetsById(widgetId) {
         for(i = 0; i < widgets.length; i++) {
           if(widgets[i]._id == widgetId) {
             return widgets[i];

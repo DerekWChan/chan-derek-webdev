@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default">
   <div class="navbar-header">
     <div class="navbar-text pull-left">
-      <a href="#/page-list" class="navbar-link">
+      <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page" class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </div>
     <div class="navbar-brand">Widgets</div>
     <div class="navbar-text pull-right">
-      <a href="#/widget-chooser" class="navbar-link">
+      <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="navbar-link">
         <span class="glyphicon glyphicon-plus"></span>
       </a>
     </div>
@@ -15,59 +15,37 @@
 </nav>
 
 <div class="container-fluid">
-  <div class="widget">
-    <div class="widget-toolbar">
-      <a href="#/widget-heading">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <span class="glyphicon glyphicon-align-justify"></span>
-    </div>
-    <h1>Google Design</h1>
-  </div>
-  <div class="widget">
-    <div class="widget-toolbar">
-      <span class="glyphicon glyphicon-cog"></span>
-      <span class="glyphicon glyphicon-align-justify"></span>
-    </div>
-    <h3>I/O 2017: Our Definitive Guide to Design</h3>
-  </div>
-  <div class="widget">
-    <div class="widget-toolbar">
-      <a href="#/widget-image">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <span class="glyphicon glyphicon-align-justify"></span>
-    </div>
-    <img width="100%" src="https://cdn-images-1.medium.com/max/2000/1*z1AnW7Hb6JDKaZb3fGi3Ng.jpeg" />
-  </div>
-  <div class="widget">
-    <div class="widget-toolbar">
-      <span class="glyphicon glyphicon-cog"></span>
-      <span class="glyphicon glyphicon-align-justify"></span>
-    </div>
-    <p>Welcome to Google Design’s #<a href="https://twitter.com/hashtag/io17" data-href="https://twitter.com/hashtag/io17" target="_blank">io17</a> coverage. Our second annual designer’s guide is your one-stop resource for design programming during Google
-      I/O. Below you’ll find hand-picked talks, office hours for in-person design reviews, and information on Material CodeLabs for Android, iOS, and the web. We’ll add more links and videos as they become available&#8202;—&#8202;stay tuned.</p>
-    <p>Quick Links:<br>
-      <a href="https://events.google.com/io/live" data-href="https://events.google.com/io/live" target="_blank">Livestream</a>
-      <br>
-      <a href="https://events.google.com/io/schedule/?section=agenda" data-href="https://events.google.com/io/schedule/?section=agenda" target="_blank">Agenda</a></p>
-  </div>
-  <div class="widget embed-responsive embed-responsive-4by3">
-    <div class="widget-toolbar">
-      <a href="#/widget-youtube">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
-      <span class="glyphicon glyphicon-align-justify"></span>
-    </div>
-    <iframe width="100%" src="https://www.youtube.com/embed/Y2VF8tmLFHw" frameborder="0" allowfullscreen></iframe>
-  </div>
+  <ul class="list-group">
+    <li ng-repeat="widget in model.widgets" class="list-group-item">
+      <div class="widget">
+        <div class="widget-toolbar">
+          <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+          <span class="glyphicon glyphicon-align-justify"></span>
+        </div>
+        <div ng-include="model.getWidgetUrlForType(widget.widgetType)"></div>
+        <div ng-switch="widget.widgetType">
+          <div ng-switch-when="HEADING">
+            <ng-include src="'widget-heading-edit.view.client.html'">
+          </div>
+          <div ng-switch-when="IMAGE">
+            <ng-include src="'widget-image-edit.view.client.html'">
+          </div>
+          <div ng-switch-when="YOUTUBE">
+            <ng-include src="'widget-youtube-edit.view.client.html'">
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
     <div class="navbar-header">
       <div class="navbar-text pull-right">
-        <a href="#/profile" class="navbar-link">
+        <a href="#!/user/{{model.userId}}" class="navbar-link">
           <span class="glyphicon glyphicon-user"></span>
         </a>
       </div>

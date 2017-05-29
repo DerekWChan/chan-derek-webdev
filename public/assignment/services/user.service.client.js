@@ -55,6 +55,7 @@
           return users[i];
         }
       }
+      return null;
     }
 
     // returns the user in local users array whose username matches the parameter username
@@ -64,6 +65,7 @@
           return users[i];
         }
       }
+      return null;
     }
 
     // returns the user whose username and password match the username and password parameters
@@ -73,6 +75,7 @@
           return users[i];
         }
       }
+      return null;
     }
 
     // updates the user in local users array whose _id matches the userId parameter

@@ -8,67 +8,67 @@
       .when("/", {
         templateUrl: "views/user/templates/login.view.client.html",
         controller: "LoginController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
       .when("/login", {
         templateUrl: "views/user/templates/login.view.client.html",
         controller: "LoginController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
       .when("/register", {
         templateUrl: "views/user/templates/register.view.client.html",
         controller: "RegisterController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid", {
+      .when("/user/:userId", {
         templateUrl: "views/user/templates/profile.view.client.html",
         controller: "ProfileController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website", {
+      .when("/user/:userId/website", {
         templateUrl: "views/website/templates/website-list.view.client.html",
         controller: "WebsiteListController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website/new", {
+      .when("/user/:userId/website/new", {
         templateUrl: "views/website/templates/website-new.view.client.html",
         controller: "NewWebsiteController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website/:wid", {
+      .when("/user/:userId/website/:websiteId", {
         templateUrl: "views/website/templates/website-edit.view.client.html",
         controller: "EditWebsiteController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website/:wid/page", {
+      .when("/user/:userId/website/:websiteId/page", {
         templateUrl: "views/page/templates/page-list.view.client.html",
         controller: "PageListController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website/:wid/page/new", {
+      .when("/user/:userId/website/:websiteId/page/new", {
         templateUrl: "views/page/templates/page-new.view.client.html",
         controller: "NewPageController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website/:wid/page/:pid", {
+      .when("/user/:userId/website/:websiteId/page/:pageId", {
         templateUrl: "views/page/templates/page-edit.view.client.html",
         controller: "EditPageController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website/:wid/page/:pid/widget", {
+      .when("/user/:userId/website/:websiteId/page/:pageId/widget", {
         templateUrl: "views/widget/templates/widget-list.view.client.html",
         controller: "WidgetListController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website/:wid/page/:pid/widget/new", {
+      .when("/user/:userId/website/:websiteId/page/:pageId/widget/new", {
         templateUrl: "views/widget/templates/widget-chooser.view.client.html",
         controller: "NewWidgetController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
-      .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
+      .when("/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId", {
         templateUrl: "views/widget/templates/widget-edit.view.client.html",
         controller: "EditWidgetController",
-        controllerAs: "vm"
+        controllerAs: "model"
       })
   }
 })();

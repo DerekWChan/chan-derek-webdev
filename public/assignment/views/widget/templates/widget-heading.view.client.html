@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default">
   <div class="navbar-header">
     <div class="navbar-text pull-left">
-      <a href="#/widget-list" class="navbar-link">
+      <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/" class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </div>
     <div class="navbar-brand">Widget Edit</div>
     <div class="navbar-text pull-right">
-      <a href="#/widget-list" class="navbar-link">
+      <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/" class="navbar-link">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </div>
@@ -18,17 +18,17 @@
   <form>
     <div class="form-group">
       <label for="name">Name</label>
-      <input ng-model="vm.widget.name" type="text" class="form-control" id="name" placeholder="Name">
+      <input ng-model="widget.name" type="text" class="form-control" id="name" placeholder="Name">
     </div>
     <div class="form-group">
       <label for="text">Text</label>
-      <input ng-model="vm.widget.text" type="text" class="form-control" id="text" placeholder="Text">
+      <input ng-model="widget.text" type="text" class="form-control" id="text" placeholder="Text">
     </div>
     <div class="form-group">
       <label for="size">Size</label>
-      <input ng-model="vm.widget.size" type="text" class="form-control" id="size" placeholder="0">
+      <input ng-model="widget.size" type="text" class="form-control" id="size" placeholder="0">
     </div>
-    <a class="btn btn-danger btn-block" href="#/widget-list">Delete</a>
+    <a class="btn btn-danger btn-block" href="#!/widget-list">Delete</a>
   </form>
 </div>
 
@@ -36,7 +36,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <div class="navbar-text pull-right">
-        <a href="#/profile" class="navbar-link">
+        <a href="#!/user/{{model.userId}}" class="navbar-link">
           <span class="glyphicon glyphicon-user"></span>
         </a>
       </div>

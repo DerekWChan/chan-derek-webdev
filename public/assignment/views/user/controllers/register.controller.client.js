@@ -1,18 +1,34 @@
 (function() {
   angular
     .module("WebAppMaker")
-    .controller("RegisterController", RegisterController)
+    .controller("RegisterController", RegisterController);
 
   function RegisterController($location, UserService) {
-    var vm = this;
+    var model = this;
+    model.register = register;
 
-    vm.register = function(username, password) {
+    function register(username, password, verifyPassword) {
+      if (username === '' || username === null || username === undefined) {
+        model.message = 'Please type in a username.';
+        return;
+      }
+
+      if (password === '' || password === null || password === undefined) {
+        model.message = 'Please type in a password.';
+        return;
+      }
+
+      if (password !== verifyPassword) {
+        model.message = 'The passwords do not match.';
+        return;
+      }
+
       var found = UserService.findUserByUsername(username);
       if (found !== null) {
-        vm.message = "Username " + username + " is not available."
+        model.message = "Username " + username + " is not available."
       } else {
         var newUser = {
-          _id: Math.floor(Math.random() * (1000 - 0)).toString(),
+          _id: (new Date()).getTime() + "",
           username: username,
           password: password
         };
