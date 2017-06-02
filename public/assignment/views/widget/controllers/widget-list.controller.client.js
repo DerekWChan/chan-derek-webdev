@@ -8,9 +8,9 @@
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
     model.pageId = $routeParams['pageId'];
-    model.getWidgetUrlForType = getWidgetUrlForType;
-    model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
     model.trustThisContent = trustThisContent;
+    model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+    model.getWidgetUrlForType = getWidgetUrlForType;
 
     function init() {
       model.widgets = WidgetService.findWidgetsByPageId(model.pageId);
