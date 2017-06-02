@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default">
+  <div class="navbar-header">
+    <div class="navbar-text pull-left">
+      <a href=href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new/" class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+    </div>
+    <div class="navbar-brand">New {{model.widgets.widgetType}} Widget</div>
+    <div class="navbar-text pull-right">
+      <a href="" ng-click="model.createWidget(model.widgets)" class="navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div ng-include="model.getWidgetEditUrl(model.widgets.widgetType)"></div>
+
+<div class="container-fluid">
+  <a ng-click="model.createWidget(model.widgets)" class="btn btn-block btn-success">Create</a>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

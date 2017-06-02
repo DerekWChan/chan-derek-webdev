@@ -55,7 +55,7 @@
       var api = {
         "createWidget": createWidget,
         "findWidgetsByPageId": findWidgetsByPageId,
-        "findWidgetsById": findWidgetsById,
+        "findWidgetById": findWidgetById,
         "updateWidget": updateWidget,
         "deleteWidget": deleteWidget
       };
@@ -63,6 +63,7 @@
 
       // adds the widget parameter instance to the local widgets array. The new widget's pageId is set to the pageId parameter
       function createWidget(pageId, widget) {
+        widget._id = (new Date()).getTime() + "";
         widget.pageId = pageId;
         widgets.push(widget);
       }
@@ -79,27 +80,30 @@
       }
 
       // retrieves the widget in local widgets array whose _id matches the widgetId parameter
-      function findWidgetsById(widgetId) {
+      function findWidgetById(widgetId) {
         for(i = 0; i < widgets.length; i++) {
-          if(widgets[i]._id == widgetId) {
+          if(widgets[i]._id === widgetId) {
             return widgets[i];
           }
         }
+        return null;
       }
 
       // updates the widget in local widgets array whose _id matches the widgetId parameter
       function updateWidget(widgetId, widget) {
         for(i = 0; i < widgets.length; i++) {
-          if(widgets[i]._id == widgetId) {
+          if(widgets[i]._id === widgetId) {
             widgets[i] = widget;
+            return angular.copy(widget);
           }
         }
+        return null;
       }
 
       // removes the widget from local widgets array whose _id matches the widgetId parameter
       function deleteWidget(widgetId) {
         for(i = 0; i < widgets.length; i++) {
-          if(widgets[i]._id == widgetId) {
+          if(widgets[i]._id === widgetId) {
             widgets.splice(i, 1);
           }
         }

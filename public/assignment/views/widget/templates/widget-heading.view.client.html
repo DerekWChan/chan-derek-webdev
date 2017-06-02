@@ -1,45 +1,16 @@
-<nav class="navbar navbar-default">
-  <div class="navbar-header">
-    <div class="navbar-text pull-left">
-      <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/" class="navbar-link">
-        <span class="glyphicon glyphicon-chevron-left"></span>
+<div ng-switch="widget.size">
+  <div class="widget">
+    <div class="widget-toolbar">
+      <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+        <span class="glyphicon glyphicon-cog"></span>
       </a>
+      <span class="glyphicon glyphicon-align-justify"></span>
     </div>
-    <div class="navbar-brand">Widget Edit</div>
-    <div class="navbar-text pull-right">
-      <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/" class="navbar-link">
-        <span class="glyphicon glyphicon-ok"></span>
-      </a>
-    </div>
+    <h1 ng-switch-when="1">{{widget.text}}</h1>
+    <h2 ng-switch-when="2">{{widget.text}}</h2>
+    <h3 ng-switch-when="3">{{widget.text}}</h3>
+    <h4 ng-switch-when="4">{{widget.text}}</h4>
+    <h5 ng-switch-when="5">{{widget.text}}</h5>
+    <h6 ng-switch-when="6">{{widget.text}}</h6>
   </div>
-</nav>
-
-<div class="container-fluid">
-  <form>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input ng-model="widget.name" type="text" class="form-control" id="name" placeholder="Name">
-    </div>
-    <div class="form-group">
-      <label for="text">Text</label>
-      <input ng-model="widget.text" type="text" class="form-control" id="text" placeholder="Text">
-    </div>
-    <div class="form-group">
-      <label for="size">Size</label>
-      <input ng-model="widget.size" type="text" class="form-control" id="size" placeholder="0">
-    </div>
-    <a class="btn btn-danger btn-block" href="#!/widget-list">Delete</a>
-  </form>
 </div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <div class="navbar-text pull-right">
-        <a href="#!/user/{{model.userId}}" class="navbar-link">
-          <span class="glyphicon glyphicon-user"></span>
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>

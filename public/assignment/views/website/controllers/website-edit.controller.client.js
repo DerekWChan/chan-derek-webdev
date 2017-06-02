@@ -7,16 +7,22 @@
     var model = this;
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
+    model.updateWebsite = updateWebsite;
     model.deleteWebsite = deleteWebsite;
 
     function init() {
+      model.website = WebsiteService.findWebsiteById(model.websiteId);
       model.websites = WebsiteService.findWebsitesByUser(model.userId);
-      model.websites = WebsiteService.findWebsiteById(model.websiteId);
     }
     init();
 
+    function updateWebsite(website) {
+      WebsiteService.updateWebsite(model.websiteId, website);
+      $location.url('/user/' + model.userId + '/website');
+    }
+
     function deleteWebsite(websiteId) {
-      WebsiteService.deleteWebsite(websiteId);
+      WebsiteService.deleteWebsite(model.websiteId);
       $location.url('/user/' + model.userId + '/website');
     }
   }

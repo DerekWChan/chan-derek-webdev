@@ -1,49 +1,9 @@
-<nav class="navbar navbar-default">
-  <div class="navbar-header">
-    <div class="navbar-text pull-left">
-      <a href="#!/widget-list" class="navbar-link">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
-    </div>
-    <div class="navbar-brand">Widget Edit</div>
-    <div class="navbar-text pull-right">
-      <a href="#!/widget-list" class="navbar-link">
-        <span class="glyphicon glyphicon-ok"></span>
-      </a>
-    </div>
-  </div>
-</nav>
-
-<div class="container-fluid">
-  <form>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input ng-model="widget.name" type="text" class="form-control" id="name" placeholder="Name">
-    </div>
-    <div class="form-group">
-      <label for="text">Text</label>
-      <input ng-model="widget.text" type="text" class="form-control" id="text" placeholder="Text">
-    </div>
-    <div class="form-group">
-      <label for="url">URL</label>
-      <input ng-model="widget.url" type="text" class="form-control" id="url" placeholder="https://youtu.be/Y2VF8tmLFHw">
-    </div>
-    <div class="form-group">
-      <label for="width">Width</label>
-      <input ng-model="widget.width" type="text" class="form-control" id="width" placeholder="100%">
-    </div>
-    <a class="btn btn-danger btn-block" href="#!/widget-list">Delete</a>
-  </form>
-</div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <div class="navbar-text pull-right">
-        <a href="#!/profile" class="navbar-link">
-          <span class="glyphicon glyphicon-user"></span>
+<div class="widget widget-video embed-responsive embed-responsive-4by3">
+    <iframe src="{{model.getYouTubeEmbedUrl(widget.url)}}" width="{{widget.width}}" frameborder="0" allowfullscreen></iframe>
+    <div class="widget-toolbar">
+        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+            <span class="glyphicon glyphicon-cog"></span>
         </a>
-      </div>
+        <span class="glyphicon glyphicon-align-justify"></span>
     </div>
-  </div>
-</nav>
+</div>

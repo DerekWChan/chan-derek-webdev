@@ -8,18 +8,17 @@
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
     model.pageId = $routeParams['pageId'];
+    model.getWidgetUrlForType = getWidgetUrlForType;
+    model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+    model.trustThisContent = trustThisContent;
 
     function init() {
       model.widgets = WidgetService.findWidgetsByPageId(model.pageId);
     }
     init();
 
-    model.getWidgetUrlForType = getWidgetUrlForType;
-    model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-    model.trustThisContent = trustThisContent;
-
-    function getWidgetUrlForType(type) {
-      return 'views/widget/templates/widget-' + type.toLowerCase() + '.view.client.html';
+    function trustThisContent(html) {
+      return $sce.trustAsHtml(html);
     }
 
     function getYouTubeEmbedUrl(youTubeLink) {
@@ -27,12 +26,12 @@
       var youTubeLinkParts = youTubeLink.split('/');
       var id = youTubeLinkParts[youTubeLinkParts.length - 1];
       embedUrl += id;
-      console.log(embedUrl);
       return $sce.trustAsResourceUrl(embedUrl);
     }
 
-    function trustThisContent(html) {
-      return $sce.trustAsHtml(html);
+    function getWidgetUrlForType(widget) {
+      var url = 'views/widget/templates/widget-' + widget.toLowerCase() + '.view.client.html';
+      return url;
     }
   }
 })();

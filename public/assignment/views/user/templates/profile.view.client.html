@@ -2,7 +2,7 @@
   <div class="navbar-header">
     <div class="navbar-brand">Profile</div>
     <div class="navbar-text pull-right">
-      <a class="navbar-link" href="#!/user/{{model.userId}}">
+      <a ng-click="model.updateUser(model.userId, model.user)" class="navbar-link">
         <span class="glyphicon glyphicon-ok"></span>
       </a>
     </div>
@@ -29,20 +29,13 @@
       <label for="last-name">Last Name</label>
       <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
     </div>
+    <div ng-show="model.message" class="alert alert-info">{{model.message}}</div>
   </form>
 
   <a class="btn btn-primary btn-block" href="#!/user/{{model.userId}}/website">Websites</a>
-  <a class="btn btn-danger  btn-block" href="#!/login">Logout</a>
+  <a ng-click="model.updateUser(model.userId, model.user)" class="btn btn-success btn-block">Update</a>
+  <a ng-click="model.deleteUser(model.userId)" class="btn btn-danger btn-block">Delete</a>
+  <a href="#!/login" class="btn btn-danger btn-warning btn-block">Logout</a>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <div class="navbar-text pull-right">
-        <a href="#!/user/{{model.userId}}" class="navbar-link">
-          <span class="glyphicon glyphicon-user"></span>
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
+<div ng-include="'views/common/footer.view.client.html'"></div>

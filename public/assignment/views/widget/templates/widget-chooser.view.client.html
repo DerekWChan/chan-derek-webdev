@@ -12,37 +12,18 @@
 <div class="container-fluid">
   <ul class="list-group">
     <li class="list-group-item">
-      <div class="row">
-        <div class="col-xs-12">
-          <a href="#!/widget-heading">Header</a>
-        </div>
-      </div>
+      <a href="" ng-click="model.showWidgetPage('HEADING')">Heading</a>
     </li>
     <li class="list-group-item">
-      <div class="row">
-        <div class="col-xs-12">
-          <a href="#!/widget-image">Image</a>
-        </div>
-      </div>
+      <a href="" ng-click="model.showWidgetPage('HTML')">HTML</a>
     </li>
     <li class="list-group-item">
-      <div class="row">
-        <div class="col-xs-12">
-          <a href="#!/widget-youtube">YouTube</a>
-        </div>
-      </div>
+      <a href="" ng-click="model.showWidgetPage('IMAGE')">Image</a>
+    </li>
+    <li class="list-group-item">
+      <a href="" ng-click="model.showWidgetPage('YOUTUBE')">YouTube</a>
     </li>
   </ul>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <div class="navbar-text pull-right">
-        <a href="#!/profile" class="navbar-link">
-          <span class="glyphicon glyphicon-user"></span>
-        </a>
-      </div>
-    </div>
-  </div>
-</nav>
+<div ng-include="'views/common/footer.view.client.html'"></div>

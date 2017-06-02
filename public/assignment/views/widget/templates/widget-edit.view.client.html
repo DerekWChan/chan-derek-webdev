@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default">
+  <div class="navbar-header">
+    <div class="navbar-text pull-left">
+      <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+    </div>
+    <div class="navbar-brand">Edit {{model.widgets.widgetType.toLowerCase()}} Widget</div>
+    <div class="navbar-text pull-right">
+      <a ng-click="model.updateWidget(model.widgets)" class="navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div ng-include="model.getWidgetEditUrl(model.widgets.widgetType)"></div>
+
+<div class="container-fluid">
+  <a class="btn btn-block btn-success" ng-click="model.updateWidget(model.widgets)">Update</a>
+  <a class="btn btn-block btn-danger" ng-click="model.deleteWidget(model.widgets)">Delete</a>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>
