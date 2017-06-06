@@ -3,7 +3,7 @@
     .module('WebAppMaker')
     .factory('UserService', UserService);
 
-  function UserService() {
+  function UserService($http) {
     var users = [{
         _id: "123",
         username: "alice",
@@ -44,24 +44,27 @@
     return api;
 
     // adds the user parameter instance to the local users array
-    function createUser(user) {
-      users.push(user);
+    function createUser(newUser) {
+      var url = "/api/assignment/user";
+      return $http.post(url, newUser)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // returns the user in local users array whose _id matches the userId parameter
     function findUserById(userId) {
-      for(i = 0; i < users.length; i++) {
-        if(users[i]._id == userId) {
-          return users[i];
-        }
-      }
-      return null;
+      var url = "/api/assignment/user/" + userId;
+      return $http.get(url)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // returns the user in local users array whose username matches the parameter username
     function findUserByUsername(username) {
-      for(i = 0; i < users.length; i++) {
-        if(users[i].username == username) {
+      for (i = 0; i < users.length; i++) {
+        if (users[i].username == username) {
           return users[i];
         }
       }
@@ -70,8 +73,8 @@
 
     // returns the user whose username and password match the username and password parameters
     function findUserByCredentials(username, password) {
-      for(i = 0; i < users.length; i++) {
-        if(users[i].username == username && users[i].password == password) {
+      for (i = 0; i < users.length; i++) {
+        if (users[i].username == username && users[i].password == password) {
           return users[i];
         }
       }
@@ -80,8 +83,8 @@
 
     // updates the user in local users array whose _id matches the userId parameter
     function updateUser(userId, user) {
-      for(i = 0; i < users.length; i++) {
-        if(users[i]._id == userId) {
+      for (i = 0; i < users.length; i++) {
+        if (users[i]._id == userId) {
           users[i] = user;
         }
       }
@@ -89,8 +92,8 @@
 
     // removes the user whose _id matches the userId parameter
     function deleteUser(userId) {
-      for(i = 0; i < users.length; i++) {
-        if(users[i]._id == userId) {
+      for (i = 0; i < users.length; i++) {
+        if (users[i]._id == userId) {
           users.splice(i, 1);
         }
       }
