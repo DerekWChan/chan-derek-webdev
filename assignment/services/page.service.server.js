@@ -24,3 +24,58 @@ app.get('/api/website/:websiteId/page', findAllPagesForWebsite);
 app.get('/api/page/:pageId', findPageById);
 app.put('/api/page/:pageId', updatePage);
 app.delete('/api/page/:pageId', deletePage);
+
+function createPage(req, res) {
+  var page = req.body;
+  page._id = (new Date()).getTime() + "";
+  page.websiteId = websiteId;
+  pages.push(page);
+  res.json(page);
+}
+
+function findAllPagesForWebsite(req, res) {
+  var websiteId = req.params.websiteId;
+  var results = [];
+  for(i = 0; i < pages.length; i++) {
+    if(pages[i].websiteId == websiteId) {
+      results.push(pages[i]);
+    }
+  }
+  res.json(results);
+}
+
+function findPageById(req, res) {
+  var pageId = req.params.pageId;
+  for(i = 0; i < pages.length; i++) {
+    if(pages[i]._id == pageId) {
+      res.json(pages[i]);
+      return;
+    }
+  }
+  res.json(404);
+}
+
+function updatePage(req, res) {
+  var pageId = req.params.pageId;
+  var page = req.body;
+  for(i = 0; i < pages.length; i++) {
+    if(pages[i]._id == pageId) {
+      pages[i] = page;
+      res.sendStatus(200)
+      return;
+    }
+  }
+  res.sendStatus(404);
+}
+
+function deletePage(req, res) {
+  var pageId = req.params.pageId;
+  for(i = 0; i < pages.length; i++) {
+    if(pages[i]._id == pageId) {
+      pages.splice(i, 1);
+      res.sendStatus(200);
+      return;
+    }
+  }
+  res.sendStatus(404);
+}
