@@ -3,7 +3,7 @@
     .module('WebAppMaker')
     .factory('WebsiteService', WebsiteService);
 
-  function WebsiteService() {
+  function WebsiteService($http) {
     var websites = [{
         "_id": "123",
         "name": "Facebook",
@@ -49,7 +49,7 @@
     ];
     var api = {
       "createWebsite": createWebsite,
-      "findWebsitesByUser": findWebsitesByUser,
+      "findAllWebsitesForUser": findAllWebsitesForUser,
       "findWebsiteById": findWebsiteById,
       "updateWebsite": updateWebsite,
       "deleteWebsite": deleteWebsite
@@ -66,7 +66,7 @@
     }
 
     // retrieves the websites in local websites array whose developerId matches the parameter userId
-    function findWebsitesByUser(userId) {
+    function findAllWebsitesForUser(userId) {
       var url = "/api/assignment/user/" + userId + "/website";
       return $http.get(url)
         .then(function(response) {

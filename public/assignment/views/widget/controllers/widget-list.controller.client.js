@@ -13,7 +13,11 @@
     model.getWidgetUrlForType = getWidgetUrlForType;
 
     function init() {
-      model.widgets = WidgetService.findWidgetsByPageId(model.pageId);
+      WidgetService
+        .findAllWidgetsForPage(model.pageId)
+        .then(function() {
+          model.widgets = widgets;
+        });
     }
     init();
 

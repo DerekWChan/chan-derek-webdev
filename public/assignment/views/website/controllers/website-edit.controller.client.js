@@ -11,19 +11,34 @@
     model.deleteWebsite = deleteWebsite;
 
     function init() {
-      model.website = WebsiteService.findWebsiteById(model.websiteId);
-      model.websites = WebsiteService.findWebsitesByUser(model.userId);
+      WebsiteService
+        .findWebsiteById(model.websiteId)
+        .then(function() {
+          model.websites = websites;
+        });
+
+      WebsiteService
+        .findAllWebsitesForUser(model.userId)
+        .then(function() {
+          model.websites = websites;
+        });
     }
     init();
 
     function updateWebsite(website) {
-      WebsiteService.updateWebsite(model.websiteId, website);
-      $location.url('/user/' + model.userId + '/website');
+      WebsiteService
+        .updateWebsite(model.websiteId, website)
+        .then(function() {
+          $location.url('/user/' + model.userId + '/website');
+        });
     }
 
     function deleteWebsite(websiteId) {
-      WebsiteService.deleteWebsite(model.websiteId);
-      $location.url('/user/' + model.userId + '/website');
+      WebsiteService
+        .deleteWebsite(model.websiteId)
+        .then(function() {
+          $location.url('/user/' + model.userId + '/website');
+        });
     }
   }
 })();

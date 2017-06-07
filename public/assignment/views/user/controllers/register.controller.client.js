@@ -23,17 +23,21 @@
         return;
       }
 
-      var found = UserService.findUserByUsername(username);
-      if (found !== null) {
-        model.message = "Username " + username + " is not available."
-      } else {
+      function usernameUnavailable() {
+        model.message = "Username " + username + " is not available.";
+      }
+
+      function usernameAvailable() {
         var newUser = {
           _id: (new Date()).getTime() + "",
           username: username,
           password: password
         };
-        UserService.createUser(newUser);
-        $location.url('/user/' + newUser._id);
+        UserService
+          .createUser(newUser)
+          .then(function(user) {
+            $location.url('/user/' + newUser._id);
+          });
       }
     }
   }

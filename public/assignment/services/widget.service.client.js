@@ -3,7 +3,7 @@
     .module('WebAppMaker')
     .factory('WidgetService', WidgetService);
 
-  function WidgetService() {
+  function WidgetService($http) {
     var widgets = [{
         "_id": "123",
         "widgetType": "HEADING",
@@ -54,10 +54,11 @@
     ]
     var api = {
       "createWidget": createWidget,
-      "findWidgetsByPageId": findWidgetsByPageId,
+      "findAllWidgetsForPage": findAllWidgetsForPage,
       "findWidgetById": findWidgetById,
       "updateWidget": updateWidget,
-      "deleteWidget": deleteWidget
+      "deleteWidget": deleteWidget,
+      "sortWidget": sortWidget
     };
     return api;
 
@@ -70,9 +71,8 @@
         });
     }
 
-
     // retrieves the widgets in local widgets array whose pageId matches the parameter pageId
-    function findWidgetsByPageId(pageId) {
+    function findAllWidgetsForPage(pageId) {
       var url = "/api/assignment/page/" + pageId + "/widget";
       return $http.get(url)
         .then(function(response) {
@@ -105,6 +105,11 @@
         .then(function(response) {
           return response.data;
         });
+    }
+
+    function sortWidget(initial, final, pageId) {
+      var url = "/api/assignment/page/" + pageId + "/widget?initial=" + initial + "&final=" + final;
+      $http.put(url);
     }
   }
 })();

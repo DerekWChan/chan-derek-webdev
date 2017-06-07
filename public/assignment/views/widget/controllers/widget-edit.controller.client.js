@@ -14,7 +14,11 @@
     model.deleteWidget = deleteWidget;
 
     function init() {
-      model.widgets = WidgetService.findWidgetById(model.widgetId);
+      WidgetService
+        .findWidgetById(model.widgetId)
+        .then(function() {
+          model.widgets = widgets;
+        });
     }
     init();
 
@@ -24,13 +28,19 @@
     }
 
     function updateWidget(widget) {
-      WidgetService.updateWidget(model.widgetId, widget);
-      $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+      WidgetService
+        .updateWidget(model.widgetId, widget)
+        .then(function() {
+          $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+        });
     }
 
     function deleteWidget(widget) {
-      WidgetService.deleteWidget(model.widgetId);
-      $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+      WidgetService
+        .deleteWidget(model.widgetId)
+        .then(function() {
+          $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+        });
     }
   }
 })();

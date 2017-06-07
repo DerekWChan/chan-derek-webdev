@@ -9,14 +9,21 @@
     model.createWebsite = createWebsite;
 
     function init() {
-      model.websites = WebsiteService.findWebsitesByUser(model.userId);
+      WebsiteService
+        .findAllWebsitesForUser(model.userId)
+        .then(function() {
+          model.websites = websites;
+        });
     }
     init();
 
     function createWebsite(website) {
       website.developerId = model.userId;
-      WebsiteService.createWebsite(website);
-      $location.url('/user/' + model.userId + '/website');
+      WebsiteService
+        .createWebsite(website)
+        .then(function() {
+          $location.url('/user/' + model.userId + '/website');
+        });
     }
   }
 })();

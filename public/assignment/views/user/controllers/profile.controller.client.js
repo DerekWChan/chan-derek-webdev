@@ -1,23 +1,52 @@
 (function() {
-  angular
-    .module("WebAppMaker")
-    .controller("ProfileController", ProfileController);
+    angular
+      .module("WebAppMaker")
+      .controller("ProfileController", ProfileController);
 
-  function ProfileController($location, $routeParams, UserService) {
-    var model = this;
-    model.userId = $routeParams["userId"];
-    model.user = UserService.findUserById(model.userId);
-    model.updateUser = updateUser;
-    model.deleteUser = deleteUser;
+    function ProfileController($location, $routeParams, UserService) {
+      var model = this;
+      model.userId = $routeParams["userId"];
+      model.updateUser = updateUser;
+      model.deleteUser = deleteUser;
 
-    function updateUser(userId, user) {
-      UserService.updateUser(userId, user);
-      model.message = "Profile was updated successfully.";
-    }
+      UserService
+        .findUserById(model.userId)
+        .then(renderUser, userNotFound);
 
-    function deleteUser(userId) {
-      UserService.deleteUser(userId);
-      $location.url('/login');
+      function renderUser(user) {
+        model.user = user;
+      }
+
+      function userNotFound() {
+        model.message = "The username was not found.";
+      }
+
+      function updateUser(userId, user) {
+        UserService
+          .updateUser(userId, user)
+          .then(profileUpdated, profileNotUpdated);
+
+        function profileUpdated() {
+          model.message = "Profile was updated successfully.";
+        }
+
+        function profileNotUpdated() {
+          model.message = "Profile could not be updated.";
+        }
+      }
+
+      function deleteUser(userId) {
+        UserService
+          .deleteUser(userId)
+          .then(profileDeleted, profileNotDeleted);
+
+        function profileDeleted() {
+          $location.url('/login');
+        }
+
+        function profileNotDeleted() {
+          model.message = "Profile could not be deleted.";
+        }
     }
   }
 })();

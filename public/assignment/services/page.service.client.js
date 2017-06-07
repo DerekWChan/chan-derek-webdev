@@ -3,7 +3,7 @@
     .module('WebAppMaker')
     .factory('PageService', PageService);
 
-  function PageService() {
+  function PageService($http) {
     var pages = [{
         "_id": "321",
         "name": "Post 1",
@@ -25,7 +25,7 @@
     ]
     var api = {
       "createPage": createPage,
-      "findPageByWebsiteId": findPageByWebsiteId,
+      "findAllPagesForWebsite": findAllPagesForWebsite,
       "findPageById": findPageById,
       "updatePage": updatePage,
       "deletePage": deletePage
@@ -42,7 +42,7 @@
     }
 
     // retrieves the pages in local pages array whose websiteId matches the parameter websiteId
-    function findPageByWebsiteId(websiteId) {
+    function findAllPagesForWebsite(websiteId) {
       var url = "/api/assignment/website/" + websiteId + "/page";
       return $http.get(url)
         .then(function(response) {

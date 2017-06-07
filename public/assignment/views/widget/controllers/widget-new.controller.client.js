@@ -24,12 +24,22 @@
     }
 
     function createWidget(widget) {
-      WidgetService.createWidget(model.pageId, widget);
-      $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+      WidgetService
+        .createWidget(model.pageId, widget)
+        .then(function(widget) {
+          $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id);
+        });
     }
 
     function showWidgetPage(widgetType) {
-      $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/new/' + widgetType.toLowerCase());
+      var widget = {
+        widgetType: widgetType
+      };
+
+      WidgetService
+        .createWidget(model.pageId, widget)
+        .then(function(widget) {
+      $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/new/' + widgetType.toLowerCase() + "/" + widget._id);
     }
   }
 })();
