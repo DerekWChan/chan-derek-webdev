@@ -14,7 +14,9 @@
     model.showWidgetPage = showWidgetPage;
 
     function init() {
-      model.widgets = {'widgetType' : model.widgetType};
+      model.widgets = {
+        'widgetType': model.widgetType
+      };
     }
     init();
 
@@ -39,7 +41,8 @@
       WidgetService
         .createWidget(model.pageId, widget)
         .then(function(widget) {
-      $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/new/' + widgetType.toLowerCase() + "/" + widget._id);
+          $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/new/' + widgetType.toLowerCase() + "/" + widget._id);
+        });
     }
   }
 })();

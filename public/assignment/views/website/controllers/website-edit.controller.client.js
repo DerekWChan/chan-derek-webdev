@@ -13,13 +13,13 @@
     function init() {
       WebsiteService
         .findWebsiteById(model.websiteId)
-        .then(function() {
+        .then(function(websites) {
           model.websites = websites;
         });
 
       WebsiteService
         .findAllWebsitesForUser(model.userId)
-        .then(function() {
+        .then(function(websites) {
           model.websites = websites;
         });
     }

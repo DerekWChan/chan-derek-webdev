@@ -25,11 +25,12 @@
       function userFound(found) {
         if (found !== null) {
           $location.url('/user/' + found._id);
+        }
       }
 
       function userNotFound(error) {
         model.message = "The username was not found.";
       }
-    };
+    }
   }
 })();

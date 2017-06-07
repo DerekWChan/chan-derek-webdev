@@ -15,7 +15,7 @@
     function init() {
       WidgetService
         .findAllWidgetsForPage(model.pageId)
-        .then(function() {
+        .then(function(widgets) {
           model.widgets = widgets;
         });
     }

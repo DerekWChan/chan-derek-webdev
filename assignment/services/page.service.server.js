@@ -27,9 +27,7 @@ app.delete('/api/assignment/page/:pageId', deletePage);
 
 function createPage(req, res) {
   var page = req.body;
-
   page._id = (new Date()).getTime() + "";
-  page.websiteId = websiteId;
   pages.push(page);
   res.json(page);
 }
@@ -74,7 +72,7 @@ function updatePage(req, res) {
 
 function deletePage(req, res) {
   var pageId = req.params.pageId;
-  
+
   for(i = 0; i < pages.length; i++) {
     if(pages[i]._id == pageId) {
       pages.splice(i, 1);

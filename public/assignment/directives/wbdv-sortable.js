@@ -29,7 +29,7 @@
 
     function SortWidgetController(WidgetService, $routeParams) {
       var model = this;
-      model.pageId = $routeParams.pageId;
+      model.pageId = $routeParams['pageId'];
       model.sort = sort;
 
       function sort(initialIndex, finalIndex) {

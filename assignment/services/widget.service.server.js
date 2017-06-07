@@ -68,8 +68,8 @@ function findAllWidgetsForPage(req, res) {
   var pageId = req.params.pageId;
   var results = [];
 
-  for(i = 0; i < widgets.length; i++) {
-    if(widgets[i].pageId === pageId) {
+  for (i = 0; i < widgets.length; i++) {
+    if (widgets[i].pageId === pageId) {
       results.push(widgets[i]);
     }
   }
@@ -79,8 +79,8 @@ function findAllWidgetsForPage(req, res) {
 function findWidgetById(req, res) {
   var widgetId = req.params.widgetId;
 
-  for(i = 0; i < widgets.length; i++) {
-    if(widgets[i]._id === widgetId) {
+  for (i = 0; i < widgets.length; i++) {
+    if (widgets[i]._id === widgetId) {
       res.json(widgets[i]);
     }
   }
@@ -90,8 +90,8 @@ function updateWidget(req, res) {
   var widgetId = req.params.widgetId;
   var widget = req.body;
 
-  for(i = 0; i < widgets.length; i++) {
-    if(widgets[i]._id === widgetId) {
+  for (i = 0; i < widgets.length; i++) {
+    if (widgets[i]._id === widgetId) {
       widgets[i] = widget;
       res.sendStatus(200);
       return;
@@ -103,12 +103,61 @@ function updateWidget(req, res) {
 function deleteWidget(req, res) {
   var widgetId = req.params.widgetId;
 
-  for(i = 0; i < widgets.length; i++) {
-    if(widgets[i]._id === widgetId) {
+  for (i = 0; i < widgets.length; i++) {
+    if (widgets[i]._id === widgetId) {
       widgets.splice(i, 1);
       res.sendStatus(200);
       return;
     }
   }
   res.sendStatus(404);
+}
+
+function sortWidget(req, res) {
+  var initial = req.query['initial'];
+  var final = req.query['final'];
+  var pageId = req.params['pageId'];
+  var resultWidgets = [];
+
+  for (i = 0; i < widgets.length; i++) {
+    if (widgets[i].pageId === pageId) {
+      resultWidgets.push(widgets[i]);
+    }
+  }
+
+  for (i = 0; i < resultWidgets.length; i++) {
+    var index = widgets.indexOf(resultWidgets[i]);
+    widgets.splice(index, 1);
+  }
+
+  resultWidget.splice(final - 1, 0, resultWidgets.splice(initial - 1, 1)[0]);
+
+  for (i = 0; i < resultWidgets.length; i++) {
+    widgets.push(resultWidgets[i]);
+  }
+}
+
+function uploadImage(req, res) {
+  var widgetId = req.body.widgetId;
+  var width = req.body.width;
+  var myFile = req.file;
+
+  var userId = req.body.userId;
+  var websiteId = req.body.websiteId;
+  var pageId = req.body.pageId;
+
+  var originalname = myFile.originalname;
+  var filename = myFile.filename;
+  var path = myFile.path;
+  var destination = myFile.destination;
+  var size = myFile.size;
+  var mimetype = myFile.mimetype;
+
+  var widget = getWidgetById(widgetId);
+  widget.url = '/assignment/uploads/' + filename;
+
+  var callbackUrl = "/assignment/index.html#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/";
+
+  res.redirect(callbackUrl);
+
 }

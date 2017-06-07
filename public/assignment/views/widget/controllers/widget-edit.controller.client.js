@@ -16,7 +16,7 @@
     function init() {
       WidgetService
         .findWidgetById(model.widgetId)
-        .then(function() {
+        .then(function(widgets) {
           model.widgets = widgets;
         });
     }

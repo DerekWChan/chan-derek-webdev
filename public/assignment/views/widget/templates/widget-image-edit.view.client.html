@@ -18,8 +18,18 @@
     </div>
     <div class="form-group">
       <label for="file">Upload</label>
-      <input multiple type="file" multiple type="file" class="form-control" id="file">
+      <form action="/api/assignment/upload" method="post" enctype="multipart/form-data">
+        <input name="myFile" type="file" id="upload" class="form-control" />
+        <input name="width" value="{{model.widgets.width}}" style="display: none" />
+        <input name="userId" value="{{model.userId}}" style="display: none" />
+        <input name="websiteId" value="{{model.websiteId}}" style="display: none" />
+        <input name="pageId" value="{{model.pageId}}" style="display: none" />
+        <input name="widgetId" value="{{model.widgetId}}" style="display: none" />
+        <button type="submit" class="btn btn-block btn-primary upload">Upload Image</button>
+      </form>
     </div>
-    <a href="" class="btn btn-primary btn-block" href="#!/widget-list">Upload Image</a>
+    <a class="btn btn-info btn-block" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/search">
+      Search Flickr
+    </a>
   </form>
 </div>

@@ -12,13 +12,14 @@
     function init() {
       PageService
         .findAllPagesForWebsite(model.websiteId)
-        .then(function() {
+        .then(function(pages) {
           model.pages = pages;
         });
     }
     init();
 
     function createPage(page) {
+      page.websiteId = model.websiteId;
       PageService
         .createPage(model.websiteId, page)
         .then(function() {

@@ -63,7 +63,7 @@ function findUserByCredentials(req, res) {
 
   for(i = 0; i < users.length; i++) {
     if(users[i].username == username && users[i].password == password) {
-      res.json(user);
+      res.json(users[i]);
       return;
     }
   }
@@ -98,7 +98,7 @@ function updateUser(req, res) {
 
 function deleteUser(req, res) {
   var userId = req.params['userId'];
-  
+
   for(i = 0; i < users.length; i++) {
     if(users[i]._id == userId) {
       users.splice(i, 1);

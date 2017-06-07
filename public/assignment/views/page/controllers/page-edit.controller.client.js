@@ -14,7 +14,7 @@
     function init() {
       PageService
         .findAllPagesForWebsite(model.websiteId)
-        .then(function() {
+        .then(function(pages) {
           model.pages = pages;
         });
 
