@@ -19,14 +19,15 @@ var pages = [{
   }
 ];
 
-app.post('/api/website/:websiteId/page', createPage);
-app.get('/api/website/:websiteId/page', findAllPagesForWebsite);
-app.get('/api/page/:pageId', findPageById);
-app.put('/api/page/:pageId', updatePage);
-app.delete('/api/page/:pageId', deletePage);
+app.post('/api/assignment/website/:websiteId/page', createPage);
+app.get('/api/assignment/website/:websiteId/page', findAllPagesForWebsite);
+app.get('/api/assignment/page/:pageId', findPageById);
+app.put('/api/assignment/page/:pageId', updatePage);
+app.delete('/api/assignment/page/:pageId', deletePage);
 
 function createPage(req, res) {
   var page = req.body;
+
   page._id = (new Date()).getTime() + "";
   page.websiteId = websiteId;
   pages.push(page);
@@ -36,6 +37,7 @@ function createPage(req, res) {
 function findAllPagesForWebsite(req, res) {
   var websiteId = req.params.websiteId;
   var results = [];
+
   for(i = 0; i < pages.length; i++) {
     if(pages[i].websiteId == websiteId) {
       results.push(pages[i]);
@@ -46,6 +48,7 @@ function findAllPagesForWebsite(req, res) {
 
 function findPageById(req, res) {
   var pageId = req.params.pageId;
+
   for(i = 0; i < pages.length; i++) {
     if(pages[i]._id == pageId) {
       res.json(pages[i]);
@@ -58,6 +61,7 @@ function findPageById(req, res) {
 function updatePage(req, res) {
   var pageId = req.params.pageId;
   var page = req.body;
+
   for(i = 0; i < pages.length; i++) {
     if(pages[i]._id == pageId) {
       pages[i] = page;
@@ -70,6 +74,7 @@ function updatePage(req, res) {
 
 function deletePage(req, res) {
   var pageId = req.params.pageId;
+  
   for(i = 0; i < pages.length; i++) {
     if(pages[i]._id == pageId) {
       pages.splice(i, 1);

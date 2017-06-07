@@ -43,14 +43,15 @@ var websites = [{
   }
 ];
 
-app.post('/api/user/:userId/website', createWebsite);
-app.get('/api/user/:userId/website', findAllWebsitesForUser);
-app.get('/api/website/:websiteId', findWebsiteById);
-app.put('/api/website/:websiteId', updateWebsite);
-app.delete('/api/website/:websiteId', deleteWebsite);
+app.post('/api/assignment/user/:userId/website', createWebsite);
+app.get('/api/assignment/user/:userId/website', findAllWebsitesForUser);
+app.get('/api/assignment/website/:websiteId', findWebsiteById);
+app.put('/api/assignment/website/:websiteId', updateWebsite);
+app.delete('/api/assignment/website/:websiteId', deleteWebsite);
 
 function createWebsite(req, res) {
   var website = req.body;
+
   website._id = (new Date()).getTime() + "";
   websites.push(website);
   res.json(website);
@@ -59,6 +60,7 @@ function createWebsite(req, res) {
 function findAllWebsitesForUser(req, res) {
   var userId = req.params.userId;
   var results = [];
+
   for (i = 0; i < websites.length; i++) {
     if (websites[i].developerId === userId) {
       results.push(websites[i]);
@@ -69,6 +71,7 @@ function findAllWebsitesForUser(req, res) {
 
 function findWebsiteById(req, res) {
   var websiteId = req.params.websiteId;
+
   for (i = 0; i < websites.length; i++) {
     if (websites[i]._id === websiteId) {
       res.json(websites[i]);
@@ -81,6 +84,7 @@ function findWebsiteById(req, res) {
 function updateWebsite(req, res) {
   var websiteId = req.params.websiteId;
   var website = req.body;
+
   for (i = 0; i < websites.length; i++) {
     if (websites[i]._id === websiteId) {
       websites[i] = website;
@@ -93,6 +97,7 @@ function updateWebsite(req, res) {
 
 function deleteWebsite(req, res) {
   var websiteId = req.params.websiteId;
+
   for (i = 0; i < websites.length; i++) {
     if (websites[i]._id === websiteId) {
       websites.splice(i, 1);

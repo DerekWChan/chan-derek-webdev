@@ -63,40 +63,38 @@
 
     // returns the user in local users array whose username matches the parameter username
     function findUserByUsername(username) {
-      for (i = 0; i < users.length; i++) {
-        if (users[i].username == username) {
-          return users[i];
-        }
-      }
-      return null;
+      var url = "/api/assignment/user?username=" + username;
+      return $http.get(url)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // returns the user whose username and password match the username and password parameters
     function findUserByCredentials(username, password) {
-      for (i = 0; i < users.length; i++) {
-        if (users[i].username == username && users[i].password == password) {
-          return users[i];
-        }
-      }
-      return null;
+      var url = "/api/assignment/user?username=" + username + "&password=" + password;
+      return $http.get(url)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // updates the user in local users array whose _id matches the userId parameter
     function updateUser(userId, user) {
-      for (i = 0; i < users.length; i++) {
-        if (users[i]._id == userId) {
-          users[i] = user;
-        }
-      }
+      var url = "/api/assignment/user/" + userId;
+      return $http.put(url, user)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // removes the user whose _id matches the userId parameter
     function deleteUser(userId) {
-      for (i = 0; i < users.length; i++) {
-        if (users[i]._id == userId) {
-          users.splice(i, 1);
-        }
-      }
+      var url = "/api/assignment/user/" + userId;
+      return $http.delete(url)
+        .then(function(response) {
+          return response.data;
+        });
     }
   }
 })();

@@ -48,15 +48,16 @@ var widgets = [{
   }
 ];
 
-app.post('/api/page/:pageId/widget', createWidget);
-app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
-app.get('/api/widget/:widgetId', findWidgetById);
-app.put('/api/widget/:widgetId', updateWidget);
-app.delete('/api/widget/:widgetId', deleteWidget);
+app.post('/api/assignment/page/:pageId/widget', createWidget);
+app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
+app.get('/api/assignment/widget/:widgetId', findWidgetById);
+app.put('/api/assignment/widget/:widgetId', updateWidget);
+app.delete('/api/assignment/widget/:widgetId', deleteWidget);
 
 function createWidget(req, res) {
   var pageId = req.params.pageId;
   var widget = req.body;
+
   widget._id = (new Date()).getTime() + "";
   widget.pageId = pageId;
   widgets.push(widget);
@@ -66,6 +67,7 @@ function createWidget(req, res) {
 function findAllWidgetsForPage(req, res) {
   var pageId = req.params.pageId;
   var results = [];
+
   for(i = 0; i < widgets.length; i++) {
     if(widgets[i].pageId === pageId) {
       results.push(widgets[i]);
@@ -76,6 +78,7 @@ function findAllWidgetsForPage(req, res) {
 
 function findWidgetById(req, res) {
   var widgetId = req.params.widgetId;
+
   for(i = 0; i < widgets.length; i++) {
     if(widgets[i]._id === widgetId) {
       res.json(widgets[i]);
@@ -86,6 +89,7 @@ function findWidgetById(req, res) {
 function updateWidget(req, res) {
   var widgetId = req.params.widgetId;
   var widget = req.body;
+
   for(i = 0; i < widgets.length; i++) {
     if(widgets[i]._id === widgetId) {
       widgets[i] = widget;
@@ -98,6 +102,7 @@ function updateWidget(req, res) {
 
 function deleteWidget(req, res) {
   var widgetId = req.params.widgetId;
+
   for(i = 0; i < widgets.length; i++) {
     if(widgets[i]._id === widgetId) {
       widgets.splice(i, 1);

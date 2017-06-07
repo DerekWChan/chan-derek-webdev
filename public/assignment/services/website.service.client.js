@@ -57,47 +57,48 @@
     return api;
 
     // adds the website parameter instance to the local websites array. The new website's developerId is set to the userId parameter
-    function createWebsite(website) {
-      website._id = (new Date()).getTime() + "";
-      websites.push(website);
+    function createWebsite(website, userId) {
+      var url = "/api/assignment/user/" + userId + "/website";
+      return $http.post(url, website)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // retrieves the websites in local websites array whose developerId matches the parameter userId
     function findWebsitesByUser(userId) {
-      var results = [];
-      for (i = 0; i < websites.length; i++) {
-        if (websites[i].developerId === userId) {
-          results.push(websites[i]);
-        }
-      }
-      return results;
+      var url = "/api/assignment/user/" + userId + "/website";
+      return $http.get(url)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // retrieves the website in local websites array whose _id matches the websiteId parameter
     function findWebsiteById(websiteId) {
-      for (i = 0; i < websites.length; i++) {
-        if (websites[i]._id === websiteId) {
-          return websites[i];
-        }
-      }
+      var url = "/api/assignment/website/" + websiteId;
+      return $http.get(url)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // updates the website in local websites array whose _id matches the websiteId parameter
     function updateWebsite(websiteId, website) {
-      for (i = 0; i < websites.length; i++) {
-        if (websites[i]._id === websiteId) {
-          websites[i] = website;
-        }
-      }
+      var url = "/api/assignment/website/" + websiteId;
+      return $http.put(url, website)
+        .then(function(response) {
+          return response.data;
+        });
     }
 
     // removes the website from local websites array whose _id matches the websiteId parameter
     function deleteWebsite(websiteId) {
-      for (i = 0; i < websites.length; i++) {
-        if (websites[i]._id === websiteId) {
-          websites.splice(i, 1);
-        }
-      }
+      var url = "/api/assignment/website/" + websiteId;
+      return $http.delete(url)
+        .then(function(response) {
+          return response.data;
+        });
     }
   }
 })();

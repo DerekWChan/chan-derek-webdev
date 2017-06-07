@@ -29,22 +29,24 @@ var users = [{
   }
 ];
 
-app.post('/api/user', createUser);
-app.get('/api/user/:userId', findUserById);
-app.get('/api/user', findUserByCredentials);
-app.get('/api/user', findUserByUsername);
-app.put('/api/user/:userId', updateUser);
-app.delete('/api/user/:userId', deleteUser);
+app.post('/api/assignment/user', createUser);
+app.get('/api/assignment/user/:userId', findUserById);
+app.get('/api/assignment/user', findUserByCredentials);
+app.get('/api/assignment/user', findUserByUsername);
+app.put('/api/assignment/user/:userId', updateUser);
+app.delete('/api/assignment/user/:userId', deleteUser);
 
 function createUser(req, res) {
-  var newUser = req.body;
+  var user = req.body;
+
   newUser._id = (new Date()).getTime() + "";
-  users.push(newUser);
-  res.send(newUser);
+  users.push(user);
+  res.send(user);
 }
 
 function findUserById(req, res) {
   var userId = req.params['userId'];
+
   for(i = 0; i < users.length; i++) {
     if(users[i]._id == userId) {
       res.send(users[i]);
@@ -58,6 +60,7 @@ function findUserById(req, res) {
 function findUserByCredentials(req, res) {
   var username = req.query['username'];
   var password = req.query['password'];
+
   for(i = 0; i < users.length; i++) {
     if(users[i].username == username && users[i].password == password) {
       res.json(user);
@@ -69,6 +72,7 @@ function findUserByCredentials(req, res) {
 
 function findUserByUsername(req, res) {
   var username = req.query['username'];
+
   for(i = 0; i < users.length; i++) {
     if(users[i].username == username) {
       res.json(user);
@@ -81,6 +85,7 @@ function findUserByUsername(req, res) {
 function updateUser(req, res) {
   var userId = req.params['userId'];
   var user = req.body;
+
   for(i = 0; i < users.length; i++) {
     if(users[i]._id == userId) {
       users[i] = user;
@@ -93,6 +98,7 @@ function updateUser(req, res) {
 
 function deleteUser(req, res) {
   var userId = req.params['userId'];
+  
   for(i = 0; i < users.length; i++) {
     if(users[i]._id == userId) {
       users.splice(i, 1);
