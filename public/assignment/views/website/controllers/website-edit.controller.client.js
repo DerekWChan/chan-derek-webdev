@@ -1,9 +1,9 @@
 (function() {
   angular
-    .module("WebAppMaker")
-    .controller("EditWebsiteController", EditWebsiteController);
+    .module('WebAppMaker')
+    .controller('websiteEditController', websiteEditController);
 
-  function EditWebsiteController($routeParams, $location, WebsiteService) {
+  function websiteEditController($routeParams, $location, websiteService) {
     var model = this;
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
@@ -11,22 +11,22 @@
     model.deleteWebsite = deleteWebsite;
 
     function init() {
-      WebsiteService
-        .findWebsiteById(model.websiteId)
+      websiteService
+        .findAllWebsitesForUser(model.userId)
         .then(function(websites) {
           model.websites = websites;
         });
 
-      WebsiteService
-        .findAllWebsitesForUser(model.userId)
-        .then(function(websites) {
-          model.websites = websites;
+      websiteService
+        .findWebsiteById(model.websiteId)
+        .then(function(website) {
+          model.website = website;
         });
     }
     init();
 
     function updateWebsite(website) {
-      WebsiteService
+      websiteService
         .updateWebsite(model.websiteId, website)
         .then(function() {
           $location.url('/user/' + model.userId + '/website');
@@ -34,7 +34,7 @@
     }
 
     function deleteWebsite(websiteId) {
-      WebsiteService
+      websiteService
         .deleteWebsite(model.websiteId)
         .then(function() {
           $location.url('/user/' + model.userId + '/website');

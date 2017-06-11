@@ -51,7 +51,6 @@ app.delete('/api/assignment/website/:websiteId', deleteWebsite);
 
 function createWebsite(req, res) {
   var website = req.body;
-
   website._id = (new Date()).getTime() + "";
   websites.push(website);
   res.json(website);
@@ -61,7 +60,7 @@ function findAllWebsitesForUser(req, res) {
   var userId = req.params.userId;
   var results = [];
 
-  for (i = 0; i < websites.length; i++) {
+  for (var i in websites) {
     if (websites[i].developerId === userId) {
       results.push(websites[i]);
     }
@@ -72,7 +71,7 @@ function findAllWebsitesForUser(req, res) {
 function findWebsiteById(req, res) {
   var websiteId = req.params.websiteId;
 
-  for (i = 0; i < websites.length; i++) {
+  for (var i in websites) {
     if (websites[i]._id === websiteId) {
       res.json(websites[i]);
       return;
@@ -85,7 +84,7 @@ function updateWebsite(req, res) {
   var websiteId = req.params.websiteId;
   var website = req.body;
 
-  for (i = 0; i < websites.length; i++) {
+  for (var i in websites) {
     if (websites[i]._id === websiteId) {
       websites[i] = website;
       res.sendStatus(200);
@@ -98,7 +97,7 @@ function updateWebsite(req, res) {
 function deleteWebsite(req, res) {
   var websiteId = req.params.websiteId;
 
-  for (i = 0; i < websites.length; i++) {
+  for (var i in websites) {
     if (websites[i]._id === websiteId) {
       websites.splice(i, 1);
       res.sendStatus(200);

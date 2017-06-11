@@ -1,9 +1,9 @@
 (function() {
   angular
     .module("WebAppMaker")
-    .controller("EditWidgetController", EditWidgetController);
+    .controller("widgetEditController", widgetEditController);
 
-  function EditWidgetController($routeParams, $location, WidgetService) {
+  function widgetEditController($routeParams, $location, widgetService) {
     var model = this;
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
@@ -14,7 +14,7 @@
     model.deleteWidget = deleteWidget;
 
     function init() {
-      WidgetService
+      widgetService
         .findWidgetById(model.widgetId)
         .then(function(widgets) {
           model.widgets = widgets;
@@ -28,7 +28,7 @@
     }
 
     function updateWidget(widget) {
-      WidgetService
+      widgetService
         .updateWidget(model.widgetId, widget)
         .then(function() {
           $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
@@ -36,7 +36,7 @@
     }
 
     function deleteWidget(widget) {
-      WidgetService
+      widgetService
         .deleteWidget(model.widgetId)
         .then(function() {
           $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');

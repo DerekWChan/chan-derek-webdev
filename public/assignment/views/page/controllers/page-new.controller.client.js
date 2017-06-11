@@ -1,16 +1,16 @@
 (function() {
   angular
-    .module("WebAppMaker")
-    .controller("NewPageController", NewPageController);
+    .module('WebAppMaker')
+    .controller('pageNewController', pageNewController);
 
-  function NewPageController($routeParams, $location, PageService) {
+  function pageNewController($routeParams, $location, pageService) {
     var model = this;
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
     model.createPage = createPage;
 
     function init() {
-      PageService
+      pageService
         .findAllPagesForWebsite(model.websiteId)
         .then(function(pages) {
           model.pages = pages;
@@ -20,8 +20,8 @@
 
     function createPage(page) {
       page.websiteId = model.websiteId;
-      PageService
-        .createPage(model.websiteId, page)
+      pageService
+        .createPage(page, model.websiteId)
         .then(function() {
           $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
         });

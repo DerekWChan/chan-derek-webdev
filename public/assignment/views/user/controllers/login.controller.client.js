@@ -1,9 +1,9 @@
 (function() {
   angular
-    .module("WebAppMaker")
-    .controller("LoginController", LoginController);
+    .module('WebAppMaker')
+    .controller('loginController', loginController);
 
-  function LoginController($location, UserService) {
+  function loginController($location, userService) {
     var model = this;
     model.login = login;
 
@@ -18,7 +18,7 @@
         return;
       }
 
-      UserService
+      userService
         .findUserByCredentials(username, password)
         .then(userFound, userNotFound);
 
@@ -29,7 +29,7 @@
       }
 
       function userNotFound(error) {
-        model.message = "The username was not found.";
+        model.message = 'The username was not found.';
       }
     }
   }

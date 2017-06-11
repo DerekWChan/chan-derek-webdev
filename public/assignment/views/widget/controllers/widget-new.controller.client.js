@@ -1,16 +1,17 @@
 (function() {
   angular
     .module("WebAppMaker")
-    .controller("NewWidgetController", NewWidgetController);
+    .controller("widgetNewController", widgetNewController);
 
-  function NewWidgetController($location, $routeParams, WidgetService) {
+  function widgetNewController($location, $routeParams, widgetService) {
     var model = this;
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
     model.pageId = $routeParams['pageId'];
+    model.widgetId = $routeParams['widgetId'];
     model.widgetType = $routeParams['widgetType'];
     model.getWidgetEditUrl = getWidgetEditUrl;
-    model.createWidget = createWidget;
+    model.updateWidget = updateWidget;
     model.showWidgetPage = showWidgetPage;
 
     function init() {
@@ -25,11 +26,21 @@
       return url;
     }
 
-    function createWidget(widget) {
-      WidgetService
-        .createWidget(model.pageId, widget)
-        .then(function(widget) {
-          $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id);
+    function updateWidget(widget) {
+      var widgets = {
+        _id: model.widgetId,
+        widgetType: model.widgetType,
+        pageId: model.pageId,
+        size: widget.size,
+        text: widget.text,
+        width: widget.width,
+        url: widget.url
+      };
+
+      widgetService
+        .updateWidget(model.widgetId, widgets)
+        .then(function() {
+          $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
         });
     }
 
@@ -37,8 +48,8 @@
       var widget = {
         widgetType: widgetType
       };
-
-      WidgetService
+      console.log(model.pageId);
+      widgetService
         .createWidget(model.pageId, widget)
         .then(function(widget) {
           $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/new/' + widgetType.toLowerCase() + "/" + widget._id);

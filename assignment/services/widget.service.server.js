@@ -1,4 +1,8 @@
 var app = require('../../express');
+var multer = require('multer');
+var upload = multer({
+  dest: __dirname + '/../../public/assignment/uploads'
+});
 var widgets = [{
     "_id": "123",
     "widgetType": "HEADING",
@@ -49,9 +53,11 @@ var widgets = [{
 ];
 
 app.post('/api/assignment/page/:pageId/widget', createWidget);
+app.post("/api/assignment/upload", upload.single('myFile'), uploadImage);
 app.get('/api/assignment/page/:pageId/widget', findAllWidgetsForPage);
 app.get('/api/assignment/widget/:widgetId', findWidgetById);
 app.put('/api/assignment/widget/:widgetId', updateWidget);
+app.put('/api/assignment/page/:pageId/widget', sortWidget);
 app.delete('/api/assignment/widget/:widgetId', deleteWidget);
 
 function createWidget(req, res) {
@@ -68,7 +74,7 @@ function findAllWidgetsForPage(req, res) {
   var pageId = req.params.pageId;
   var results = [];
 
-  for (i = 0; i < widgets.length; i++) {
+  for (var i in widgets) {
     if (widgets[i].pageId === pageId) {
       results.push(widgets[i]);
     }
@@ -79,7 +85,7 @@ function findAllWidgetsForPage(req, res) {
 function findWidgetById(req, res) {
   var widgetId = req.params.widgetId;
 
-  for (i = 0; i < widgets.length; i++) {
+  for (var i in widgets) {
     if (widgets[i]._id === widgetId) {
       res.json(widgets[i]);
     }
@@ -90,7 +96,7 @@ function updateWidget(req, res) {
   var widgetId = req.params.widgetId;
   var widget = req.body;
 
-  for (i = 0; i < widgets.length; i++) {
+  for (var i in widgets) {
     if (widgets[i]._id === widgetId) {
       widgets[i] = widget;
       res.sendStatus(200);
@@ -103,7 +109,7 @@ function updateWidget(req, res) {
 function deleteWidget(req, res) {
   var widgetId = req.params.widgetId;
 
-  for (i = 0; i < widgets.length; i++) {
+  for (var i in widgets) {
     if (widgets[i]._id === widgetId) {
       widgets.splice(i, 1);
       res.sendStatus(200);
@@ -119,7 +125,7 @@ function sortWidget(req, res) {
   var pageId = req.params['pageId'];
   var resultWidgets = [];
 
-  for (i = 0; i < widgets.length; i++) {
+  for (var i in widgets) {
     if (widgets[i].pageId === pageId) {
       resultWidgets.push(widgets[i]);
     }

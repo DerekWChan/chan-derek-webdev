@@ -1,9 +1,9 @@
 (function() {
   angular
-    .module("WebAppMaker")
-    .controller("RegisterController", RegisterController);
+    .module('WebAppMaker')
+    .controller('registerController', registerController);
 
-  function RegisterController($location, UserService) {
+  function registerController($location, userService) {
     var model = this;
     model.register = register;
 
@@ -23,17 +23,21 @@
         return;
       }
 
+      userService
+        .findUserByUsername(username)
+        .then(usernameUnavailable, usernameAvailable);
+
       function usernameUnavailable() {
-        model.message = "Username " + username + " is not available.";
+        model.message = 'Username ' + username + ' is not available.';
       }
 
       function usernameAvailable() {
         var newUser = {
-          _id: (new Date()).getTime() + "",
+          _id: (new Date()).getTime() + '',
           username: username,
           password: password
         };
-        UserService
+        userService
           .createUser(newUser)
           .then(function(user) {
             $location.url('/user/' + newUser._id);

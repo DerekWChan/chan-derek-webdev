@@ -1,9 +1,9 @@
 (function() {
   angular
     .module('WebAppMaker')
-    .directive('WbdvSortable', WbdvSortable);
+    .directive('wbdvSortable', wbdvSortable);
 
-    function WbdvSortable() {
+    function wbdvSortable() {
       function linkFunction(scope, element) {
         var initialIndex = -1;
         var finalIndex = -1;
@@ -27,13 +27,13 @@
       }
     }
 
-    function SortWidgetController(WidgetService, $routeParams) {
+    function SortWidgetController(widgetService, $routeParams) {
       var model = this;
       model.pageId = $routeParams['pageId'];
       model.sort = sort;
 
       function sort(initialIndex, finalIndex) {
-        WidgetService.sortWidget(initial, final, model.pageId);
+        widgetService.sortWidget(initial, final, model.pageId);
       }
     }
   })();

@@ -1,15 +1,15 @@
 (function() {
   angular
-    .module("WebAppMaker")
-    .controller("NewWebsiteController", NewWebsiteController);
+    .module('WebAppMaker')
+    .controller('websiteNewController', websiteNewController);
 
-  function NewWebsiteController($location, $routeParams, WebsiteService) {
+  function websiteNewController($location, $routeParams, websiteService) {
     var model = this;
     model.userId = $routeParams['userId'];
     model.createWebsite = createWebsite;
 
     function init() {
-      WebsiteService
+      websiteService
         .findAllWebsitesForUser(model.userId)
         .then(function(websites) {
           model.websites = websites;
@@ -19,7 +19,7 @@
 
     function createWebsite(website) {
       website.developerId = model.userId;
-      WebsiteService
+      websiteService
         .createWebsite(website)
         .then(function() {
           $location.url('/user/' + model.userId + '/website');

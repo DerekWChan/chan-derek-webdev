@@ -1,9 +1,9 @@
 (function() {
   angular
-    .module("WebAppMaker")
-    .controller("EditPageController", EditPageController);
+    .module('WebAppMaker')
+    .controller('pageEditController', pageEditController);
 
-  function EditPageController($routeParams, $location, PageService) {
+  function pageEditController($routeParams, $location, pageService) {
     var model = this;
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
@@ -12,22 +12,22 @@
     model.deletePage = deletePage;
 
     function init() {
-      PageService
+      pageService
         .findAllPagesForWebsite(model.websiteId)
         .then(function(pages) {
           model.pages = pages;
         });
 
-      PageService
+      pageService
         .findPageById(model.pageId)
-        .then(function() {
-          model.pages = pages;
+        .then(function(page) {
+          model.page = page;
         });
     }
     init();
 
     function updatePage(page) {
-      PageService
+      pageService
         .updatePage(model.pageId, page)
         .then(function() {
           $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
@@ -35,7 +35,7 @@
     }
 
     function deletePage(pageId) {
-      PageService
+      pageService
         .deletePage(pageId)
         .then(function() {
           $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');

@@ -1,9 +1,9 @@
 (function() {
   angular
     .module("WebAppMaker")
-    .controller("FlickrController", FlickrController);
+    .controller("flickrController", flickrController);
 
-  function FlickrController($routeParams, FlickrService, WidgetService, $location) {
+  function flickrController($routeParams, FlickrService, widgetService, $location) {
     var model = this;
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
@@ -27,11 +27,11 @@
       var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
       url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
 
-      WidgetService
+      widgetService
         .findWidgetById(model.widgetId)
         .then(function(widget) {
           widget.url = url;
-          WidgetService
+          widgetService
             .updateWidget(model.widgetId, widget)
             .then(function() {
               $location.url('/user/' + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget");

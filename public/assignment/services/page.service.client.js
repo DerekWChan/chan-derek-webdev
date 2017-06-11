@@ -1,34 +1,15 @@
 (function() {
   angular
     .module('WebAppMaker')
-    .factory('PageService', PageService);
+    .factory('pageService', pageService);
 
-  function PageService($http) {
-    var pages = [{
-        "_id": "321",
-        "name": "Post 1",
-        "websiteId": "456",
-        "description": "Lorem"
-      },
-      {
-        "_id": "432",
-        "name": "Post 2",
-        "websiteId": "456",
-        "description": "Lorem"
-      },
-      {
-        "_id": "543",
-        "name": "Post 3",
-        "websiteId": "456",
-        "description": "Lorem"
-      }
-    ]
+  function pageService($http) {
     var api = {
-      "createPage": createPage,
-      "findAllPagesForWebsite": findAllPagesForWebsite,
-      "findPageById": findPageById,
-      "updatePage": updatePage,
-      "deletePage": deletePage
+      createPage: createPage,
+      findAllPagesForWebsite: findAllPagesForWebsite,
+      findPageById: findPageById,
+      updatePage: updatePage,
+      deletePage: deletePage
     };
     return api;
 
@@ -62,7 +43,7 @@
     // updates the page in local pages array whose _id matches the pageId parameter
     function updatePage(pageId, page) {
       var url = "/api/assignment/page/" + pageId;
-      return $http.put(url, newPage)
+      return $http.put(url, page)
         .then(function(response) {
           return response.data;
         });

@@ -39,7 +39,7 @@ app.delete('/api/assignment/user/:userId', deleteUser);
 function createUser(req, res) {
   var user = req.body;
 
-  newUser._id = (new Date()).getTime() + "";
+  user._id = (new Date()).getTime() + "";
   users.push(user);
   res.send(user);
 }
@@ -47,8 +47,8 @@ function createUser(req, res) {
 function findUserById(req, res) {
   var userId = req.params['userId'];
 
-  for(i = 0; i < users.length; i++) {
-    if(users[i]._id == userId) {
+  for(var i in users) {
+    if(users[i]._id === userId) {
       res.send(users[i]);
       return;
     }
@@ -61,8 +61,8 @@ function findUserByCredentials(req, res) {
   var username = req.query['username'];
   var password = req.query['password'];
 
-  for(i = 0; i < users.length; i++) {
-    if(users[i].username == username && users[i].password == password) {
+  for(var i in users) {
+    if(users[i].username === username && users[i].password === password) {
       res.json(users[i]);
       return;
     }
@@ -73,8 +73,8 @@ function findUserByCredentials(req, res) {
 function findUserByUsername(req, res) {
   var username = req.query['username'];
 
-  for(i = 0; i < users.length; i++) {
-    if(users[i].username == username) {
+  for(var i in users) {
+    if(users[i].username === username) {
       res.json(user);
       return;
     }
@@ -86,8 +86,8 @@ function updateUser(req, res) {
   var userId = req.params['userId'];
   var user = req.body;
 
-  for(i = 0; i < users.length; i++) {
-    if(users[i]._id == userId) {
+  for(var i in users) {
+    if(users[i]._id === userId) {
       users[i] = user;
       res.sendStatus(200);
       return;
@@ -99,8 +99,8 @@ function updateUser(req, res) {
 function deleteUser(req, res) {
   var userId = req.params['userId'];
 
-  for(i = 0; i < users.length; i++) {
-    if(users[i]._id == userId) {
+  for(var i in users) {
+    if(users[i]._id === userId) {
       users.splice(i, 1);
       res.sendStatus(200);
       return;
