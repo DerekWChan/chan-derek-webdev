@@ -23,7 +23,8 @@
     init();
 
     function getWidgetEditUrl(widget) {
-      var url = 'views/widget/templates/widget-' + widget.toLowerCase() + '-edit.view.client.html';
+      console.log(widget);
+        var url = 'views/widget/editors/widget-' + widget.toLowerCase() + '-edit.view.client.html';
       return url;
     }
 

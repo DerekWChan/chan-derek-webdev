@@ -22,7 +22,7 @@
     init();
 
     function getWidgetEditUrl(widget) {
-      var url = 'views/widget/templates/widget-' + widget.toLowerCase() + '-edit.view.client.html';
+      var url = 'views/widget/editors/widget-' + widget.toLowerCase() + '-edit.view.client.html';
       return url;
     }
 
@@ -48,7 +48,7 @@
       var widget = {
         widgetType: widgetType
       };
-      console.log(model.pageId);
+
       widgetService
         .createWidget(model.pageId, widget)
         .then(function(widget) {

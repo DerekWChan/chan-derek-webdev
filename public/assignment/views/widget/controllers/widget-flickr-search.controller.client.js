@@ -3,7 +3,7 @@
     .module("WebAppMaker")
     .controller("flickrController", flickrController);
 
-  function flickrController($routeParams, FlickrService, widgetService, $location) {
+  function flickrController($routeParams, flickrService, widgetService, $location) {
     var model = this;
     model.userId = $routeParams['userId'];
     model.websiteId = $routeParams['websiteId'];
@@ -13,7 +13,7 @@
     model.selectPhoto = selectPhoto;
 
     function searchPhotos(searchTerm) {
-      FlickrService
+      flickrService
         .searchPhotos(searchTerm)
         .then(function(response) {
           data = response.data.replace("jsonFlickrApi(", "");
