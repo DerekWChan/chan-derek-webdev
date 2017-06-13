@@ -51,7 +51,7 @@
 
     // removes the page from local pages array whose _id matches the pageId parameter
     function deletePage(pageId) {
-      var url = "/api/assignment/page/" + pageId;
+      var url = "/api/assignment/website/" + websiteId + "/page/" + pageId;
       return $http.delete(url)
         .then(function(response) {
           return response.data;

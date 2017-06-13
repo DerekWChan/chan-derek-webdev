@@ -52,7 +52,7 @@
 
     // removes the widget from local widgets array whose _id matches the widgetId parameter
     function deleteWidget(widgetId) {
-      var url = "/api/assignment/widget/" + widgetId;
+      var url = "/api/assignment/page/" + pageId + "/widget/" + widgetId;
       return $http.delete(url)
         .then(function(response) {
           return response.data;
