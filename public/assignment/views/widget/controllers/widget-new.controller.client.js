@@ -31,10 +31,14 @@
         _id: model.widgetId,
         widgetType: model.widgetType,
         pageId: model.pageId,
+        name: widget.name,
         size: widget.size,
         text: widget.text,
         width: widget.width,
-        url: widget.url
+        url: widget.url,
+        placeholder: widget.placeholder,
+        rows: widget.rows,
+        formatted: widget.formatted,
       };
 
       widgetService

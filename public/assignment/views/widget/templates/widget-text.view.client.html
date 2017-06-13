@@ -1,0 +1,19 @@
+<div class="widget" ng-show="widget.rows || widget.text">
+  <div class="widget-toolbar">
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+      <span class="glyphicon glyphicon-cog"></span>
+    </a>
+    <span class="handle glyphicon glyphicon-align-justify"></span>
+  </div>
+  <div>
+    <div ng-if="widget.formattable" text-angular ta-toolbar="[['h1','h2','h3'],
+    ['bold','italics','underline','strikeThrough'],
+    ['ul','ol'],
+    ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+    ['indent','outdent'],
+    ['html']]" placeholder="{{widget.placeholder}}">
+    </div>
+    <input ng-if="!(widget.rows && widget.formatted)" placeholder="{{widget.placeholder}}" class="form-control" />
+    <textarea ng-if="!widget.formattable" rows="{{widget.rows}}" placeholder="{{widget.placeholder}}" class="form-control">{{widget.text}}</textarea>
+  </div>
+</div>
