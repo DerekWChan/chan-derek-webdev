@@ -17,6 +17,7 @@
 <div class="container-fluid">
   <div class="col-lg-4 hidden-xs hidden-sm hidden-md">
     <h1>Websites</h1>
+    <div ng-show="model.message" class="alert alert-danger">{{model.message}}</div>
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="website in model.websites">
         <div class="row">

@@ -18,6 +18,10 @@
     init();
 
     function createWebsite(website) {
+      if (name === '' || name === null || typeof name === 'undefined') {
+        model.message = "Please enter a website name.";
+        return model.message;
+      }
       website.developerId = model.userId;
       websiteService
         .createWebsite(website)

@@ -27,6 +27,11 @@
     init();
 
     function updatePage(page) {
+      if (page.name === '' || page.name === null || typeof page.name === 'undefined') {
+        model.message = "Please enter a page name.";
+        return model.message;
+      }
+
       pageService
         .updatePage(model.pageId, page)
         .then(function() {

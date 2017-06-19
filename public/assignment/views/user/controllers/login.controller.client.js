@@ -19,7 +19,7 @@
       }
 
       userService
-        .findUserByCredentials(username, password)
+        .login(username, password)
         .then(userFound, userNotFound);
 
       function userFound(found) {

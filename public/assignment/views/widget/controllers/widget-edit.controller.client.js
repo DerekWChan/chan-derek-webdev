@@ -24,11 +24,16 @@
 
     function getWidgetEditUrl(widget) {
       console.log(widget);
-        var url = 'views/widget/editors/widget-' + widget.toLowerCase() + '-edit.view.client.html';
+      var url = 'views/widget/editors/widget-' + widget.toLowerCase() + '-edit.view.client.html';
       return url;
     }
 
     function updateWidget(widget) {
+      if (widget.name === '' || widget.name === null || typeof widget.name === 'undefined') {
+        model.message = "Please enter a widget name.";
+        return model.message;
+      }
+
       widgetService
         .updateWidget(model.widgetId, widget)
         .then(function() {

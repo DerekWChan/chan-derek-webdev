@@ -37,10 +37,10 @@
           username: username,
           password: password
         };
-        userService
-          .createUser(newUser)
+        return userService
+          .register(newUser)
           .then(function(user) {
-            $location.url('/user/' + newUser._id);
+            $location.url('/profile');
           });
       }
     }

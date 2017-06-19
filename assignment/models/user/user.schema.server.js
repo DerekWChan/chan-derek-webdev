@@ -17,6 +17,14 @@ var userSchema = mongoose.Schema({
   dateCreated: {
     type: Date,
     default: Date.now
+  },
+  facebook: {
+    id: String,
+    token: String
+  },
+  google: {
+    id: String,
+    token: String
   }
 }, {
   collection: "webappmaker_user"

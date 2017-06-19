@@ -10,7 +10,10 @@
       "findUserByUsername": findUserByUsername,
       "findUserByCredentials": findUserByCredentials,
       "updateUser": updateUser,
-      "deleteUser": deleteUser
+      "deleteUser": deleteUser,
+      "login": login,
+      "logout": logout,
+      "register": register
     };
     return api;
 
@@ -67,5 +70,22 @@
           return response.data;
         });
     }
+
+    function login(user) {
+      return $http.post("/api/assignment/login", user);
+    }
+
+    function logout() {
+      var url = "/api/assignment/logout";
+      return $http.post(url)
+        .then(function(response) {
+          return response.data;
+        });
+    }
+
+    function register(user) {
+      return $http.post("/api/assignment/register", user);
+    }
+
   }
 })();

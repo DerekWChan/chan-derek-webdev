@@ -17,6 +17,7 @@
 <div ng-include="model.getWidgetEditUrl(model.widgets.widgetType)"></div>
 
 <div class="container-fluid">
+  <div ng-show="model.message" class="alert alert-danger">{{model.message}}</div>
   <a class="btn btn-block btn-success" ng-click="model.updateWidget(model.widgets)">Update</a>
   <a class="btn btn-block btn-danger" ng-click="model.deleteWidget(model.widgets)">Delete</a>
 </div>

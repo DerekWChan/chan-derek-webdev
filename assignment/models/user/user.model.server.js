@@ -6,11 +6,14 @@ userModel.createUser = createUser;
 userModel.findUserById = findUserById;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
+userModel.findAllUsers = findAllUsers;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 
 userModel.addWebsite = addWebsite;
 userModel.deleteWebsite = deleteWebsite;
+userModel.findUserByFacebookId = findUserByFacebookId;
+userModel.findUserByGoogleId = findUserByGoogleId;
 
 module.exports = userModel;
 
@@ -39,6 +42,11 @@ function findUserByCredentials(username, password) {
   });
 }
 
+// Retrieves all users
+function findAllUsers() {
+  return userModel.find();
+}
+
 // Updates user instance whose _id is equal to parameter userId
 function updateUser(userId, user) {
   delete user.username;
@@ -57,7 +65,7 @@ function deleteUser(userId) {
   });
 }
 
-function addWebsite() {
+function addWebsite(userId, websiteId) {
   return userModel
     .findById(userId)
     .then(function(user) {
@@ -66,7 +74,7 @@ function addWebsite() {
     });
 }
 
-function deleteWebsite() {
+function deleteWebsite(userId, websiteId) {
   return userModel
     .findById(userId)
     .then(function(user) {
@@ -74,4 +82,16 @@ function deleteWebsite() {
       user.websites.splice(index, 1);
       return user.save();
     });
+}
+
+function findUserByFacebookId(facebookId) {
+  return userModel.findOne({
+    'facebook.id': facebookId
+  });
+}
+
+function findUserByGoogleId(googleId) {
+  return userModel.findOne({
+    'google.id': googleId
+  });
 }

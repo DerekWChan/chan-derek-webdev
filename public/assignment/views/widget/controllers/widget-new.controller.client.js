@@ -41,6 +41,11 @@
         formatted: widget.formatted,
       };
 
+      if (widgets.name === '' || widgets.name === null || typeof widgets.name === 'undefined') {
+        model.message = "Please enter a widget name.";
+        return model.message;
+      }
+
       widgetService
         .updateWidget(model.widgetId, widgets)
         .then(function() {

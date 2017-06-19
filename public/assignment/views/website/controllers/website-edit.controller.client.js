@@ -26,6 +26,11 @@
     init();
 
     function updateWebsite(website) {
+      if (website.name === '' || website.name === null || typeof website.name === 'undefined') {
+        model.message = "Please enter a website name.";
+        return model.message;
+      }
+
       websiteService
         .updateWebsite(model.websiteId, website)
         .then(function() {

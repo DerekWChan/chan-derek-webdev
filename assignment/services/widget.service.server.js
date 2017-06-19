@@ -1,6 +1,5 @@
 var app = require('../../express');
 var widgetModel = require('../models/widget/widget.model.server');
-
 var multer = require('multer');
 var upload = multer({
   dest: __dirname + '/../../public/assignment/uploads'

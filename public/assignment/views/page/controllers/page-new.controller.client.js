@@ -19,6 +19,11 @@
     init();
 
     function createPage(page) {
+      if (page.name === '' || page.name === null || typeof page.name === 'undefined') {
+        model.message = "Please enter a page name.";
+        return model.message;
+      }
+
       page.websiteId = model.websiteId;
       pageService
         .createPage(page, model.websiteId)
