@@ -30,7 +30,7 @@
         controller: "deckCollectionController",
         controllerAs: "model"
       })
-      .when("/deck/details", {
+      .when("/user/:userId/deck/:deckId/details", {
         templateUrl: "views/deck/templates/deck-details.view.client.html",
         controller: "deckDetailsController",
         controllerAs: "model"

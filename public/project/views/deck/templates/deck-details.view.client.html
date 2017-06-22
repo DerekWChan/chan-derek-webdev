@@ -1,12 +1,10 @@
-<h2>Burgle Rogue</h2>
-<ul>
-  <li>
-    <a href="#!/card/details"><h3>Burgle</h3></a>
-  </li>
-  <li>
-    <a href="#!/card/details"><h3>Obsidian Shard</h3></a>
-  </li>
-  <li>
-    <a href="#!/card/details"><h3>Swashburglar</h3></a>
-  </li>
+<h2>{{model.deck.name}}</h2>
+<div>{{model.deck.class}}</div>
+<div>{{model.deck.format}}</div>
+<div>{{model.deck.description}}</div>
+<div>
+  <ul>
+    <li ng-repeat="card in model.deck.cards">
+      <a href="#!/card/details"><img src="{{card.img}}"></a>
+    </li>
 </ul>
