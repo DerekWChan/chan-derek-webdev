@@ -1,0 +1,32 @@
+<form>
+  <div class="container">
+    <div>
+      <label>Name</label>
+      <input required type="text" placeholder="Deck Name"></input>
+    </div>
+    <div>
+      <label>Class</label>
+      <select required name="classes">
+      <option value="druid">Druid</option>
+      <option value="hunter">Hunter</option>
+      <option value="mage">Mage</option>
+      <option value="paladin">Paladin</option>
+      <option value="priest">Priest</option>
+      <option value="rogue">Rogue</option>
+      <option value="shaman">Shaman</option>
+      <option value="warlock">Warlock</option>
+      <option value="warrior">Warrior</option>
+    </select>
+    </div>
+    <div>
+      <label>Format</format>
+      <input checked type="radio" name="format" value="standard">Standard<br>
+      <input type="radio" name="format" value="wild">Wild<br>
+    </div>
+    <div>
+    <label>Description</label>
+      <textarea rows="5" placeholder="Deck Description"></textarea>
+    </div>
+    <a href="#!/deck/details" class="btn btn-primary btn-block">Build Deck</a>
+  </div>
+</form>
