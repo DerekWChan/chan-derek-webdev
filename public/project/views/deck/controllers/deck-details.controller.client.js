@@ -7,6 +7,10 @@
     var model = this;
     model.userId = $routeParams.userId;
     model.deckId = $routeParams.deckId;
-    model.deck = deckService.findDeckById(model.deckId);
+
+    function init() {
+      model.deck = deckService.findDeckById(model.deckId);
+    }
+    init();
   }
 })();

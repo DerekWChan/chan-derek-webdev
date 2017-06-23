@@ -45,10 +45,5 @@
         controller: "deckEditorController",
         controllerAs: "model"
       })
-      .when("/card/details", {
-        templateUrl: "views/card/templates/card-details.view.client.html",
-        controller: "cardDetailsController",
-        controllerAs: "model"
-      })
   }
 })();

@@ -7,9 +7,13 @@
     var model = this;
     model.userId = $routeParams.userId;
     model.deckId = $routeParams.deckId;
-    model.deck = deckService.findDeckById(model.deckId);
     model.updateDeck = updateDeck;
     model.deleteDeck = deleteDeck;
+
+    function init() {
+      model.deck = deckService.findDeckById(model.deckId);
+    }
+    init();
 
     function updateDeck(newInfo) {
       if (model.deck !== null) {
