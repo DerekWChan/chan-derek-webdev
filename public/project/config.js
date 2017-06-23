@@ -35,12 +35,12 @@
         controller: "deckDetailsController",
         controllerAs: "model"
       })
-      .when("/deck/builder", {
-        templateUrl: "views/deck/templates/deck-builder.view.client.html",
-        controller: "deckBuilderController",
+      .when("/user/:userId/deck/new", {
+        templateUrl: "views/deck/templates/deck-creator.view.client.html",
+        controller: "deckCreatorController",
         controllerAs: "model"
       })
-      .when("/deck/editor", {
+      .when("/user/:userId/deck/:deckId/edit", {
         templateUrl: "views/deck/templates/deck-editor.view.client.html",
         controller: "deckEditorController",
         controllerAs: "model"

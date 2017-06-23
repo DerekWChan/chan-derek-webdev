@@ -8,7 +8,7 @@
         _id: "1",
         creatorId: "1",
         name: "Burgle Rogue",
-        class: "Rogue",
+        playerClass: "Rogue",
         format: "Wild",
         description: "4THEMEMES",
         cards: [{
@@ -44,7 +44,7 @@
         _id: "2",
         creatorId: "1",
         name: "OTK Priest",
-        class: "Priest",
+        playerClass: "Priest",
         format: "Wild",
         description: "Prophet Velen MVP",
         cards: {}
@@ -53,7 +53,7 @@
         _id: "3",
         creatorId: "1",
         name: "Dino Hunter",
-        class: "Hunter",
+        playerClass: "Hunter",
         format: "Standard",
         description: "rawr",
         cards: {}
@@ -76,10 +76,11 @@
       for (var d in decks) {
         var deck = decks[d];
         if (deck._id === deckId) {
-          deck.name = newInfo.name;
-          deck.class = newInfo.class;
-          deck.format = newInfo.format;
-          deck.description = newInfo.description;
+          for (var key in newInfo) {
+            if (newInfo[key] !== '') {
+              deck[key] = newInfo[key];
+            }
+          }
         }
       }
     }
@@ -88,7 +89,7 @@
       for (var d in decks) {
         var deck = decks[d];
         if (deck._id === deckId) {
-          decks.split(d, 1);
+          decks.splice(d, 1);
         }
       }
     }

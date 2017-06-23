@@ -41,8 +41,11 @@
       for (var u in users) {
         var user = users[u];
         if (user._id === userId) {
-          user.username = newInfo.username;
-          user.email = newInfo.email;
+          for (var key in newInfo) {
+            if (newInfo[key] !== '') {
+              user[key] = newInfo[key];
+            }
+          }
         }
       }
     }
@@ -57,9 +60,9 @@
     }
 
     function findUserById(userId) {
-      for(var u in users) {
+      for (var u in users) {
         var user = users[u];
-        if(user._id === userId) {
+        if (user._id === userId) {
           return user;
         }
       }
@@ -67,9 +70,9 @@
     }
 
     function findUserByCredentials(username, password) {
-      for(var u in users) {
+      for (var u in users) {
         var user = users[u];
-        if(user.username === username && user.password === password) {
+        if (user.username === username && user.password === password) {
           return user;
         }
       }
@@ -77,9 +80,9 @@
     }
 
     function findUserByUsername(username) {
-      for(var u in users) {
+      for (var u in users) {
         var user = users[u];
-        if(user.username === username) {
+        if (user.username === username) {
           return user;
         }
       }
